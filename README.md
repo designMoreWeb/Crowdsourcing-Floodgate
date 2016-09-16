@@ -1,5 +1,9 @@
 # Crowd Sourcing Hoboken Flood Data - A Citizen Science Project
-### Jeff Mariconda, @kshah73 , @Henry12116, Nishanth Meni, @designMoreWeb 
+###@jeffm24 
+###@kshah73 
+###@Henry12116 
+###@nishmeni 
+###@designMoreWeb 
 Partnered with Stevens Institute of Technology Davidson Labs
 
 ## Our Climate is Changing...
