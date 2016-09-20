@@ -19,3 +19,4 @@ As of now we plan on implementing the majority of this project using javascript.
 - Create a drawing algorithm for taking data points and drawing over streets around them based on distribution
 - Create front-end UI
 - Create project base in Meteor
+- This is a test
