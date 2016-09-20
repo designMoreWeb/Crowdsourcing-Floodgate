@@ -12,10 +12,8 @@ As of now we plan on implementing the majority of this project using javascript.
 - [Node.js](https://nodejs.org/en/)
 - [Meteor](https://www.meteor.com/)
 - [d3.js](https://d3js.org/)
-- 
 
 Project Breakdown:
 - Create a model for taking in data points and estimating densities based on data distribution
 - Create a drawing algorithm for taking data points and drawing over streets around them based on distribution
 - Create front-end UI
-- 
