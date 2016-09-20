@@ -8,8 +8,14 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 
 ## Our Plan
 As of now we plan on implementing the majority of this project using javascript. Check out our current dependencies here:
-- [AngularJS](https://angularjs.org/)
+- [Polymer](https://www.polymer-project.org/1.0/)
 - [Node.js](https://nodejs.org/en/)
-- [Express](http://expressjs.com/)
+- [Meteor](https://www.meteor.com/)
 - [d3.js](https://d3js.org/)
-- More to come!
+- 
+
+Project Breakdown:
+- Create a model for taking in data points and estimating densities based on data distribution
+- Create a drawing algorithm for taking data points and drawing over streets around them based on distribution
+- Create front-end UI
+- 
