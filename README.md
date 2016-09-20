@@ -11,9 +11,11 @@ As of now we plan on implementing the majority of this project using javascript.
 - [Polymer](https://www.polymer-project.org/1.0/)
 - [Node.js](https://nodejs.org/en/)
 - [Meteor](https://www.meteor.com/)
-- [d3.js](https://d3js.org/)
+- [d3.js](https://d3js.org/) ?
+- [openlayers/openstreetmap](http://openlayers.org/)
 
 ## Project Breakdown:
 - Create a model for taking in data points and estimating densities based on data distribution
 - Create a drawing algorithm for taking data points and drawing over streets around them based on distribution
 - Create front-end UI
+- Create project base in Meteor
