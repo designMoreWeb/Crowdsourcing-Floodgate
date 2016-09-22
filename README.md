@@ -30,16 +30,20 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 Henry Thomas
  - Research technologies
  - Create GroupMe chat
-Jeff Mariconda:
+
+Jeff Mariconda
  - Research technologies
  - Setup Meteor project boilerplate and install necessary packages to get started
+
 Karan Shah
  - Research technologies 
  - Create Slack chat
+
 Divy Tolia
  - Research technologies 
  - Front-end integrations with the different technologies 
  - Making sure the design is consistent with modern standards
+
 Nishanth Meni
  - Research technologies
  - Create Trello board for project management and task tracking
