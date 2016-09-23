@@ -13,7 +13,7 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 | Text Chat                    | GroupMe, Slack                   |
 | Video/Voice Chat             | Hangouts                         |
 | Email                        | Gmail                            |
-| **Collaberation**            |                                  |
+| **Collaboration**            |                                  |
 | File Sharing                 | Google Drive                     |
 | Hosted Version Control       | Github                           |
 | Task Track/Project Mangement | Trello                           |
