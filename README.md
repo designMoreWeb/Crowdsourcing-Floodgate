@@ -29,24 +29,37 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 ## Delegation of Tasks:
 Henry Thomas
  - Research technologies
+ - Researched various mapping platforms and APIs
  - Create GroupMe chat
+ - Dependency Graph
+ - GUI Prototype
 
 Jeff Mariconda
  - Research technologies
+ - Researched various mapping platforms and APIs
  - Setup Meteor project boilerplate and install necessary packages to get started
+ - Dependency Graph
+ - DB Design
 
 Karan Shah
  - Research technologies 
+ - Researched various mapping platforms and APIs
  - Create Slack chat
+ - Created Trello board todo list
 
 Divy Tolia
  - Research technologies 
+ - Researched various mapping platforms and APIs
  - Front-end integrations with the different technologies 
  - Making sure the design is consistent with modern standards
+ - GUI Prototype
 
 Nishanth Meni
  - Research technologies
+ - Researched various mapping platforms and APIs
  - Create Trello board for project management and task tracking
+ - Started work on averaging function
+ 
 
 ## Project Breakdown (so far):
 - Create a model for taking in data points and estimating densities based on data distribution
