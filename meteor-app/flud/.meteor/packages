@@ -20,3 +20,6 @@ ecmascript@0.5.8              # Enable ECMAScript2015+ syntax in app code
 shell-server
 kadira:flow-router
 kadira:blaze-layout
+check
+twbs:bootstrap
+dburles:google-maps
