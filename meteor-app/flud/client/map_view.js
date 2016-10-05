@@ -10,6 +10,7 @@ Template.map_view.onCreated(function() {
     this.subscribe('datapoints');
 
     this.addMarker = new ReactiveVar();
+    this.querying = false;
     
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('exampleMap', function(map) {
@@ -20,36 +21,49 @@ Template.map_view.onCreated(function() {
         });
 
         google.maps.event.addListener(map.instance, 'click', function(event) {
-            $.ajax({
-                method: "GET",
-                url: "https://roads.googleapis.com/v1/snapToRoads",
-                data: { 
-                    path: event.latLng.lat() + ',' + event.latLng.lng(), 
-                    key: "AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU" 
-                }
-            })
-            .done(function(msg) {
-                var currentAddMarker = self.addMarker.get();
-                var point = msg.snappedPoints[0];
+            // Only query if not currently querying 
+            if (!self.querying) {
 
-                if (currentAddMarker) {
-                    currentAddMarker.setMap(null);
-                }
+                self.querying = true;
 
-                self.addMarker.set(new google.maps.Marker({
-                    draggable: false,
-                    animation: google.maps.Animation.DROP,
-                    position: new google.maps.LatLng(point.location.latitude, point.location.longitude),
-                    map: map.instance,
-                    id: point.placeId
-                }));
-            });
+                $.ajax({
+                    method: 'GET',
+                    url: 'https://roads.googleapis.com/v1/snapToRoads',
+                    data: { 
+                        path: event.latLng.lat() + ',' + event.latLng.lng(), 
+                        key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU' 
+                    }
+                })
+                .done(function(msg) {
+                    
+                    if (msg.snappedPoints) {
+                        var currentAddMarker = self.addMarker.get();
+                        var point = msg.snappedPoints[0];
+
+                        if (currentAddMarker) {
+                            // Unset the current add marker if it exists
+                            currentAddMarker.setMap(null);
+                        }
+
+                        // Set new add marker
+                        self.addMarker.set(new google.maps.Marker({
+                            draggable: false,
+                            animation: google.maps.Animation.DROP,
+                            position: new google.maps.LatLng(point.location.latitude, point.location.longitude),
+                            map: map.instance,
+                            id: point.placeId
+                        }));                        
+                    }
+
+                    self.querying = false;
+                });
+            }
         });
     });
 });
 
 Template.map_view.onRendered(function() {
-    GoogleMaps.load({ v: '3', key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU', libraries: 'geometry,places' });
+    GoogleMaps.load({ v: '3', key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU', libraries: 'geometry, places' });
 });
 
 Template.map_view.helpers({
