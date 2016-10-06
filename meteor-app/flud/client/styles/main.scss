@@ -8,7 +8,27 @@ nav {
     height: 2rem;
     margin: 0px;
     box-shadow: 0px 1px 1px transparentize(black, 0.8);
+    z-index: 2;
+}
+
+.side-menu {
+    position: absolute;
     z-index: 1;
+    width: 30rem;
+    top: 50px;
+    bottom: 0;
+    box-shadow: 0px 1px 1px transparentize(black, 0.8);
+    transition: left 1s;
+    background-color: white;
+
+    &.in {
+        left: -30rem;
+    }
+
+    &.out {
+        left: 0rem;
+    }
+
 }
 
 .map-container {
