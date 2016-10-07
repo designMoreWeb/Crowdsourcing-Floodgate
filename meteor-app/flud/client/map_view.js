@@ -6,22 +6,30 @@ import './views/map_view.html';
 Template.map_view.onCreated(function() {
     var self = this;
 
-    // counter starts at 0
+    // Subscribe template to the datapoints collection
     this.subscribe('datapoints');
+
+    // Internal data for the template
+    this.map = new ReactiveVar();
 
     this.addMarker = new ReactiveVar();
     this.querying = false;
-    
+
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('exampleMap', function(map) {
-        // Add a marker to the map once it's ready
-        var marker = new google.maps.Marker({
-            position: map.options.center,
-            map: map.instance
+
+        self.map.set(map);
+
+        self.heatMapData = new google.maps.MVCArray([]);
+
+        // Initialize the heatmap
+        self.heatMap = new google.maps.visualization.HeatmapLayer({
+            data: self.heatMapData,
+            map: map
         });
 
         google.maps.event.addListener(map.instance, 'click', function(event) {
-            // Only query if not currently querying 
+            // Only query if not currently querying
             if (!self.querying) {
 
                 self.querying = true;
@@ -29,13 +37,13 @@ Template.map_view.onCreated(function() {
                 $.ajax({
                     method: 'GET',
                     url: 'https://roads.googleapis.com/v1/snapToRoads',
-                    data: { 
-                        path: event.latLng.lat() + ',' + event.latLng.lng(), 
-                        key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU' 
+                    data: {
+                        path: event.latLng.lat() + ',' + event.latLng.lng(),
+                        key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU'
                     }
                 })
                 .done(function(msg) {
-                    
+
                     if (msg.snappedPoints) {
                         var currentAddMarker = self.addMarker.get();
                         var point = msg.snappedPoints[0];
@@ -52,17 +60,36 @@ Template.map_view.onCreated(function() {
                             position: new google.maps.LatLng(point.location.latitude, point.location.longitude),
                             map: map.instance,
                             id: point.placeId
-                        }));                        
+                        }));
                     }
 
                     self.querying = false;
                 });
             }
         });
+
+        // Update heatmap data
+        self.autorun(function() {
+            var map = self.map.get();
+
+            if (map) {
+                var dataPoints = DataPoints.find().fetch();
+
+                if (dataPoints.length) {
+                    self.heatMapData.clear();
+
+                    for (let point of dataPoints) {
+                        self.heatMapData.push({location: new google.maps.LatLng(point.latitude, point.longitude), weight: point.height});
+                    }
+                }
+            }
+        });
     });
 });
 
 Template.map_view.onRendered(function() {
+    var self = this;
+
     GoogleMaps.load({ v: '3', key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU', libraries: 'geometry, places' });
 });
 
