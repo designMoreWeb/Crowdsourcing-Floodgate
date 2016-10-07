@@ -25,7 +25,8 @@ Template.map_view.onCreated(function() {
         // Initialize the heatmap
         self.heatMap = new google.maps.visualization.HeatmapLayer({
             data: self.heatMapData,
-            map: map
+            map: map.instance
+
         });
 
         google.maps.event.addListener(map.instance, 'click', function(event) {
@@ -90,7 +91,7 @@ Template.map_view.onCreated(function() {
 Template.map_view.onRendered(function() {
     var self = this;
 
-    GoogleMaps.load({ v: '3', key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU', libraries: 'geometry, places' });
+    GoogleMaps.load({ v: '3', key: 'AIzaSyAixYo-thWvStv30hqGZ9DZeT3IItN7atU', libraries: 'visualization, geometry, places' });
 });
 
 Template.map_view.helpers({

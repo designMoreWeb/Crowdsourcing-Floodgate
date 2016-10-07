@@ -1,5 +1,5 @@
 Template.nav.onCreated(function(){
-    this.sideMenuState = new ReactiveVar("in")
+    this.sideMenuState = new ReactiveVar("in");
 });
 
 Template.nav.helpers({
@@ -12,7 +12,7 @@ Template.nav.events({
     "click #menu-btn" : function(e, template){
         e.preventDefault();
         var currentState = template.sideMenuState.get();
-        console.log();
+      
         if(currentState === "in") {
             template.sideMenuState.set("out");
         } else {
