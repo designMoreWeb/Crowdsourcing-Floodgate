@@ -20,5 +20,32 @@
         </div> 
     </nav>
 
-    <div class="side-menu {{getState}}"></div>
+    <div class="side-menu {{getState}}">
+        <div>
+            <h2>Search Bar</h2>
+
+        </div>
+
+        <div>
+            <h2>Filter</h2>
+            <ul class="filter {{getState}}"> 
+                <li><a href="#">Flooding</a></li> 
+                <li><a href="#">Temperature</a></li>
+            </ul> 
+        </div>
+
+        <div>
+            <h2>Favorites</h2>
+            <ul class="favorites {{getState}}"> 
+                <li><a href="#">Fav1</a></li>
+                <li><a href="#">Fav2</a></li>
+                <li><a href="#">Fav3</a></li>
+            </ul> 
+        </div>
+
+        <div>
+            <h2>Sign In</h2>
+            <div>Facebook Stuff</div>
+        </div>
+    </div>
 </template>
