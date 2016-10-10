@@ -12,7 +12,7 @@ Template.map_view.onCreated(function() {
     // Internal data for the template
     this.map = new ReactiveVar();
 
-    this.addMarker = new ReactiveVar();
+
     this.querying = false;
 
     // We can use the `ready` callback to interact with the map API once the map is ready.
@@ -46,22 +46,27 @@ Template.map_view.onCreated(function() {
                 .done(function(msg) {
 
                     if (msg.snappedPoints) {
-                        var currentAddMarker = self.addMarker.get();
+
                         var point = msg.snappedPoints[0];
 
-                        if (currentAddMarker) {
+                        if (self.addMarker) {
                             // Unset the current add marker if it exists
-                            currentAddMarker.setMap(null);
+                            self.addMarker.setMap(null);
                         }
 
                         // Set new add marker
-                        self.addMarker.set(new google.maps.Marker({
+                        self.addMarker = new google.maps.Marker({
                             draggable: false,
                             animation: google.maps.Animation.DROP,
                             position: new google.maps.LatLng(point.location.latitude, point.location.longitude),
                             map: map.instance,
                             id: point.placeId
-                        }));
+                        });
+                        Meteor.call("add_point",point.location.latitude, point.location.longitude, Math.random() * 100, function(error,result){
+                          if(error){
+                            console.log(error);
+                          }
+                        });
                     }
 
                     self.querying = false;
@@ -72,7 +77,15 @@ Template.map_view.onCreated(function() {
         // Update heatmap data
         self.autorun(function() {
             var map = self.map.get();
+            var random = Math.floor(Math.random() * 100);
 
+            if(random > 70){
+              Meteor.call("randomize", function(error,result) {
+                if(error){
+                  console.log(error);
+                }
+              });
+            }
             if (map) {
                 var dataPoints = DataPoints.find().fetch();
 
@@ -80,7 +93,7 @@ Template.map_view.onCreated(function() {
                     self.heatMapData.clear();
 
                     for (let point of dataPoints) {
-                        self.heatMapData.push({location: new google.maps.LatLng(point.latitude, point.longitude), weight: point.height});
+                        self.heatMapData.push({location: new google.maps.LatLng(point.latitude, point.longitude), weight: point.weight});
                     }
                 }
             }
