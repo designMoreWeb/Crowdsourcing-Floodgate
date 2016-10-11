@@ -38,3 +38,17 @@ nav {
     top: 50px;
     bottom: 0;
 }
+
+.input[type=text] {
+    //position:absolute;
+    top: 10px;
+    margin: 100px auto;
+    white-space: nowrap;
+    position: relative;
+    width: 130px;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
