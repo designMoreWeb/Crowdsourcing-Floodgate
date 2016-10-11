@@ -3,7 +3,11 @@ Meteor.methods({
         check(data, {
             height: Number,
             latitude: Number,
-            longitude: Number
+            longitude: Number,
+            locality: Match.Maybe(String),
+            administrative_area_level_2: Match.Maybe(String),
+            administrative_area_level_1: Match.Maybe(String),
+            country: Match.Maybe(String)
         });
 
         DataPoints.insert(data);

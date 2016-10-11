@@ -149,10 +149,21 @@ Template.map_view.events({
         // Reverse-geocode selected location
         template.geocoder.geocode({ 'location': template.addMarkerLoc }, function (results, status) {
             if (status === 'OK') {
-                if (results.length) {
-                    // DO SOMETHING WITH THIS LATER
-                    console.log(status);
-                    console.log(results);
+                if (results[1]) {
+                    // Extract address components from results
+                    var addrComponents = results[1].address_components;
+
+                    for (let component of addrComponents) {
+                        if (component.types.indexOf('locality') > -1) {
+                            data.locality = component.short_name;
+                        } else if (component.types.indexOf('administrative_area_level_2') > -1) {
+                            data.administrative_area_level_2 = component.short_name;
+                        } else if (component.types.indexOf('administrative_area_level_1') > -1) {
+                            data.administrative_area_level_1 = component.short_name;
+                        } else if (component.types.indexOf('country') > -1) {
+                            data.country = component.short_name;
+                        }
+                    }
 
                     // Add latitude and longitude of the data point
                     data.latitude = template.addMarkerLoc.lat;
