@@ -1,19 +1,18 @@
 Meteor.methods({
-    timesTwo: function(num) {
-        check(num, Number);
+    add_point: function (data) {
+        check(data, {
+            height: Number,
+            latitude: Number,
+            longitude: Number
+        });
 
-        return num * 2;
+        DataPoints.insert(data);
     },
-    add_point: function(lat,long,weight) {
-        DataPoints.insert({latitude: lat , longitude: long,  weight: weight});
-    },
-
-    randomize: function() {
-      console.log("change");
+    randomize: function () {
+        console.log("change");
         var dataPoints = DataPoints.find().fetch();
         for (let point of dataPoints) {
-          DataPoints.update({_id : point._id}, {latitude: point.latitude, longitude: point.longitude,  weight: Math.random()*100});
+            DataPoints.update({ _id: point._id }, { latitude: point.latitude, longitude: point.longitude, height: Math.random() * 100 });
         }
-
     }
 });

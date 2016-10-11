@@ -1,4 +1,30 @@
 <template name="map_view">
+    <div id="upload-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Add Data</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" name='data-upload-form'>
+                        <fieldset class="form-group">
+                            <label for="water-height">Water Level (in ft):</label>
+                            <input type="number" id="water-height" class="form-control" name="height" min="1" />
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="submit-upload" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
     <div class="map-container">
         {{> googleMap name="exampleMap" options=exampleMapOptions}}
     </div>
