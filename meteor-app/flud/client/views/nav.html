@@ -14,17 +14,19 @@
         <p>
             <h2>Filter</h2>
             <ul class="filter {{getState}}"> 
-                <li><a href="#">Flooding</a></li> 
-                <li><a href="#">Temperature</a></li>
+                <button type="button" class="btn btn-info">Flooding</button>
+                <button type="button" class="btn btn-info">Temperature</button>
             </ul> 
         </p>
 
         <p>
-            <h2>Favorites</h2>
+            <h2><a data-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapseFavs">Favorites</a></h2>
             <ul class="favorites {{getState}}"> 
-                <li><a href="#">Fav1</a></li>
-                <li><a href="#">Fav2</a></li>
-                <li><a href="#">Fav3</a></li>
+               <div id="collapse" class="panel-collapse collapse in"> 
+                <li class="list-group-item">Fav1</li>
+                <li class="list-group-item">Fav2</li>
+                <li class="list-group-item">Fav3</li>
+            </div>
             </ul> 
         </p>
 
