@@ -10,11 +10,13 @@ Meteor.methods({
             country: Match.Maybe(String)
         });
 
+        data.createdAt = new Date();
+
         DataPoints.insert(data);
     },
     randomize: function () {
-        console.log("change");
         var dataPoints = DataPoints.find().fetch();
+        
         for (let point of dataPoints) {
             DataPoints.update({ _id: point._id }, { latitude: point.latitude, longitude: point.longitude, height: Math.random() * 100 });
         }
