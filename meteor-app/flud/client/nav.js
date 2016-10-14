@@ -29,11 +29,7 @@ Template.nav.onRendered(function() {
 
             self.search.set(place.formatted_address);
 
-            /*
-            console.log(place.geometry.location);
-            console.log(place.place_id);
-            console.log(place.formatted_address);
-            */
+            //console.log(place);
         });
 
         // Initialize search bar for side menu
@@ -58,13 +54,12 @@ Template.nav.onRendered(function() {
 
             self.search.set(place.formatted_address);
 
-            /*
-            console.log(place.geometry.location);
-            console.log(place.place_id);
-            console.log(place.formatted_address);
-            */
+            //console.log(place);
         });
     });
+
+    // Initialize jquery scrollbar in side menu
+    $("#side-menu").mCustomScrollbar({theme: 'minimal-dark', scrollInertia: 0, mouseWheel:{ scrollAmount: 'auto' }});
 });
 
 Template.nav.helpers({

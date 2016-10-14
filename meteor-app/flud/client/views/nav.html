@@ -3,7 +3,12 @@
         <div class="navbar-header"> 
             <div id="menu-btn" class="navbar-brand clickable"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
         </div>
-        <input type="text" id="location-search-nav" class="form-control" name="location-search" placeholder="Enter a location" value="{{getCurrentSearch}}" />
+        
+        <div id="nav-search-wrapper" class="form-group has-feedback">
+            <label class="control-label sr-only" for="location-search-nav">Location Search</label>
+            <input type="text" id="location-search-nav" class="form-control" name="location-search" placeholder="Enter a location" value="{{getCurrentSearch}}">
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+        </div>
     </div>
 
     <div id="side-menu" class="{{getState}}">
