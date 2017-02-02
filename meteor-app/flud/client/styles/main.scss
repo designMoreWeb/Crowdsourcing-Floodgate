@@ -2,8 +2,88 @@ html, body {
     height: 100%;
     margin: 0px;
     padding: 0px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .clickable {
     cursor: pointer;
+}
+
+.glyph-btn {
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.2rem;
+}
+
+.introjs-tooltip {
+    text-align: left;
+    direction: ltr !important;
+
+    .introjs-arrow {
+        left: 5px;
+    }
+
+    .introjs-tooltipbuttons * {
+        float: left;
+    }
+}
+
+.introjs-overlay {
+    z-index: -1 !important;
+}
+
+.introjs-helperLayer {
+    background-color: rgba(255,255,255,0.2) !important;
+}
+
+/*
+.introjs-overlay {
+    position: relative;
+    z-index: 999;
+}
+
+.introjs-helperLayer {
+    position: relative;
+    z-index: 999;
+}
+
+.introjs-tooltipReferenceLayer {
+    position: relative;
+    z-index: 999;
+    width: 100px;
+
+}
+*/
+
+dialog {
+    min-width: 500px;
+    padding: 0px;
+
+    @media screen and (max-width: 500px) {
+        min-width: 95vw;
+    }
+
+    .dialog-inner {
+        padding: 15px;
+
+        .mdl-dialog__title {
+            margin: 0;
+            font-size: 1.5rem;
+            border-bottom: 1px solid grey;
+            padding: 10px 0px;
+        }
+
+        .mdl-dialog__content {
+            padding: 10px;
+
+            .mdl-textfield {
+                width: 100%;
+            }
+        }
+
+        .mdl-dialog__actions {
+            padding: 10px 0px;
+        }
+    }
 }

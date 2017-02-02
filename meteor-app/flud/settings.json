@@ -1,0 +1,8 @@
+{
+    "public": {
+        "GMAPS_API_KEY": "AIzaSyCpdEYPHPiVPe1xfFRxcLbE4rCCCsrX2z0",
+        "persistent_session": {
+        	"default_method": "persistent"
+        }
+    }
+}
