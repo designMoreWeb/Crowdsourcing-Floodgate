@@ -29,7 +29,7 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 ## Instructions to run:
 
 ### Step 1
-- Download our Stuff!
+- [Download our Stuff!](https://github.com/designMoreWeb/Crowdsourcing-Floodgate/archive/master.zip)
 
 ### Step 2
 - Make sure you already have node.js installed on your computer. Check with:
