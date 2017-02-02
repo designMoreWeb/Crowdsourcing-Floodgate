@@ -1,43 +1,142 @@
 <template name="nav">
-    <div id="site-navbar" class="navbar navbar-default">
-        <div class="navbar-header"> 
-            <div id="menu-btn" class="navbar-brand clickable"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
-        </div>
-        
-        <div id="nav-search-wrapper" class="form-group has-feedback">
-            <label class="control-label sr-only" for="location-search-nav">Location Search</label>
-            <input type="text" id="location-search-nav" class="form-control" name="location-search" placeholder="Enter a location" value="{{getCurrentSearch}}">
-            <i class="glyphicon glyphicon-search form-control-feedback"></i>
-        </div>
-    </div>
 
-    <div id="side-menu" class="{{getState}}">
-        <p>
-            <input type="text" id="location-search-menu" class="form-control" name="location-search" placeholder="Enter a location" value="{{getCurrentSearch}}" />
-        </p>
+	<dialog id="sign-in-modal" class="mdl-dialog">
+		<div class="dialog-inner">
+			<div class="mdl-dialog__title">
+				Sign In
+			</div>
+			<div class="mdl-dialog__content">
+				<form class="form" name='sign-in-form'>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="text" name="email" id="email">
+						<label class="mdl-textfield__label" for="email">Email Address:</label>
+					</div>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="password" name="password" id="password">
+						<label class="mdl-textfield__label" for="password">Password:</label>
+					</div>
+					<button type="submit" class="hidden">Submit</button>
+				</form>
+			</div>
+			<div class="mdl-dialog__actions">
+				<button type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect close">Cancel</button>
+				<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit-sign-in">Sign In</button>
+			</div>
+		</div>
+	</dialog>
 
-        <p>
-            <h2>Filter</h2>
-            <ul class="filter {{getState}}"> 
-                <button type="button" class="btn btn-info">Flooding</button>
-                <button type="button" class="btn btn-info">Temperature</button>
-            </ul> 
-        </p>
+	<dialog id="sign-up-modal" class="mdl-dialog">
+		<div class="dialog-inner">
+			<div class="mdl-dialog__title">
+				Sign Up
+			</div>
+			<div class="mdl-dialog__content">
+				<form class="form" name='sign-up-form'>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="text" name="email" id="email">
+						<label class="mdl-textfield__label" for="email">Email Address:</label>
+					</div>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="password" name="password" id="password">
+						<label class="mdl-textfield__label" for="password">Password:</label>
+					</div>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="password" name="confirmPassword" id="confirmPassword">
+						<label class="mdl-textfield__label" for="confirmPassword">Confirm Password:</label>
+					</div>
+					<button type="submit" class="hidden">Submit</button>
+				</form>
+			</div>
+			<div class="mdl-dialog__actions">
+				<button type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect close">Cancel</button>
+				<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit-sign-up">Submit</button>
+			</div>
+		</div>
+	</dialog>
 
-        <p>
-            <h2><a data-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapseFavs">Favorites</a></h2>
-            <ul class="favorites {{getState}}"> 
-               <div id="collapse" class="panel-collapse collapse in"> 
-                <li class="list-group-item">Fav1</li>
-                <li class="list-group-item">Fav2</li>
-                <li class="list-group-item">Fav3</li>
-            </div>
-            </ul> 
-        </p>
+	{{#let user=currentUser}}
+	<header class="mdl-layout__header">
+		<div class="mdl-layout__header-row">
+			<span class="mdl-layout-title" data-step="1" data-intro="Welcome to Flud! A fun and easy way to be alerted about flooding near you.">fl&Uuml;d</span>
+			
+			<div class="mdl-layout-spacer"></div>
 
-        <p>
-            <h2>Sign In</h2>
-            <div>Facebook Stuff</div>
-        </p>
-    </div>
+			{{#if user}}
+			<span id="fav-btn" class="glyphicon {{#if favoriteLoc}} glyphicon-star {{else}} glyphicon-star-empty {{/if}} glyph-btn" title="{{#if favoriteLoc}}Remove from favorites.{{else}}Add to favorites.{{/if}}"></span>
+			{{/if}}
+
+			<div id="nav-search" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right" data-step="2" data-intro="Here you can search for locations.">
+				<label class="mdl-button mdl-js-button mdl-button--icon" for="location-search-nav">
+                    <i class="material-icons">search</i>
+                </label>
+				<input type="search" class="mdl-textfield__input" id="location-search-nav" name="location-search" placeholder="Enter a location" value="{{getCurrentSearch}}">
+			</div>
+		</div>
+	</header>
+	
+	<div id="side-menu" class="mdl-layout__drawer">
+		
+		<span class="mdl-layout-title">fl&Uuml;d</span>
+
+		<div id="menu-search" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+			<label class="mdl-button mdl-js-button mdl-button--icon" for="location-search-menu">
+                <i class="material-icons">search</i>
+            </label>
+			<input type="search" class="mdl-textfield__input" id="location-search-menu" name="location-search" placeholder="Enter a location" value="{{getCurrentSearch}}" />
+		</div>
+		
+		<nav class="mdl-navigation">
+			<h5 class="mdl-navigation__title">Options:</h5>
+			<div class="mdl-navigation__link">
+				<label for="timeline-switch" id="timeline-box" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" data-step="3" data-intro="Here you can toggle the live and timeline view.">
+					<input type="checkbox" id="timeline-switch" class="mdl-switch__input" name="timeline">
+					<span class="mdl-switch__label">Timeline View</span>
+				</label>
+			</div>
+
+			<a class="mdl-navigation__link" data-toggle="collapse" href="#filter-collapse" aria-expanded="false" aria-controls="collapseFilters" data-step="4" data-intro="You can switch between flooding and snowing data. More data filters are expected to be added later.">Filters</a>
+			<ul id="filter-collapse" class="panel-collapse collapse out">
+				<li class="list-group-item">
+					<label for="flooding-filter" class="mdl-radio mdl-js-radio">
+						<input type="radio" id="flooding-filter" name="data-view-filters" class="mdl-radio__button" value="f" {{isDataView 'f'}}>
+						<span class="mdl-radio__label">Flooding</span>
+					</label>
+				</li>
+				<li class="list-group-item">
+					<label for="snow-filter" class="mdl-radio mdl-js-radio">
+						<input type="radio" id="snow-filter" name="data-view-filters" class="mdl-radio__button" value="s" {{isDataView 's'}}>
+						<span class="mdl-radio__label">Snow</span>
+					</label>
+				</li>
+			</ul>
+			
+			{{#if user.favorites}}
+			<a class="mdl-navigation__link" data-toggle="collapse" href="#fav-collapse" aria-expanded="false" aria-controls="fav-collapse" data-step="5" data-intro="Save locations you are interested in here!">Favorites</a>
+			<ul id="fav-collapse" class="panel-collapse collapse out">
+				{{#each favorite in user.favorites}}
+					<li class="list-group-item">
+						<a class="go-to-fav" href="#" data-place="{{favorite.placeId}}">{{favorite.formattedAddress}}</a>
+					</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+
+			<div id="user-panel" data-step="6" data-position="top" data-intro="This is our user panel. Sign Up or Sign In, it's easy and lets you use some cool features such as favorites!">
+				{{#if user}}
+					<div id="user-address">
+						{{userEmail}}
+						<button id="show-settings" class="mdl-button mdl-js-button mdl-button--icon pull-right">
+							<i class="material-icons">settings</i>
+						</button>
+					</div>
+					<a class="mdl-navigation__link" id="sign-out" href="#">Sign Out</a> 
+				{{else}}
+					<a class="mdl-navigation__link" id="show-sign-in" href="#">Sign In</a> 
+					<a class="mdl-navigation__link" id="show-sign-up" href="#">Sign Up</a>
+				{{/if}}
+			</div>
+		</nav>
+
+	</div>
+	{{/let}}
 </template>

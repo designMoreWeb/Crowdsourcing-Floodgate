@@ -18,51 +18,28 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 | Hosted Version Control       | Github                           |
 | Task Track/Project Mangement | Trello                           |
 | **Web Technologies**         |                                  |
-| Frameworks                   | Meteor, Polymer                  |
-| Libraries                    | d3.js, Openlayers, Openstreetmap |
-| Front-end Languages          | JavaScript/JQuery, HTML, CSS     |
+| Frameworks                   | Meteor, Bootstrap, MDL                  |
+| Libraries                    | Google Maps API v3 |
+| Front-end Languages          | JavaScript/JQuery, HTML, CSS (SCSS)     |
 | Back-end Language(s)         | Node.js                          |
 | Database                     | MongoDB                          |
 | Environment                  | Cross-Platform                   |
 | Browsers Supported           | Chrome, IE11+, Safari, Firefox   |
 
-## Delegation of Tasks:
-Henry Thomas
- - Research technologies
- - Researched various mapping platforms and APIs
- - Create GroupMe chat
- - Dependency Graph
- - GUI Prototype
+## Instructions to run:
+- Install and start RabbitMQ server
+- Install and start MongoDB server
+- Run 'meteor npm install' and 'npm start' in /meteor-app/flud/ to start the main server
+- Run 'npm install' and 'npm start' in /worker/ to start the worker
+- Go to localhost:3000 in your browser
 
-Jeff Mariconda
- - Research technologies
- - Researched various mapping platforms and APIs
- - Setup Meteor project boilerplate and install necessary packages to get started
- - Dependency Graph
- - DB Design
+## Current Screenshots
+![alt tag](https://github.com/jeffm24/flUd/blob/polylines/Current/Current%20Map%20View.PNG)
+ - Our main view. Search locations, view and add data, plus more!
 
-Karan Shah
- - Research technologies 
- - Researched various mapping platforms and APIs
- - Create Slack chat
- - Created Trello board todo list
 
-Divy Tolia
- - Research technologies 
- - Researched various mapping platforms and APIs
- - Front-end integrations with the different technologies 
- - Making sure the design is consistent with modern standards
- - GUI Prototype
 
-Nishanth Meni
- - Research technologies
- - Researched various mapping platforms and APIs
- - Create Trello board for project management and task tracking
- - Started work on averaging function
- 
 
-## Project Breakdown (so far):
-- Create a model for taking in data points and estimating densities based on data distribution
-- Create a drawing algorithm for taking data points and drawing over streets around them based on distribution
-- Create front-end UI
-- Create project base in Meteor
+
+![alt tag](https://github.com/jeffm24/flUd/blob/polylines/Current/Current%20Sidebar%20View.PNG)
+ - The navigation bar. Toggle the timeline, filter data, select favorite locations, and sign in!

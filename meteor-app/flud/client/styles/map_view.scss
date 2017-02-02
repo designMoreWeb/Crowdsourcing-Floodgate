@@ -2,6 +2,116 @@
     position: absolute;
     left: 0;
     width: 100%;
-    top: 50px;
+    top: 0;
     bottom: 0;
+}
+
+#color-key {
+    position: absolute;
+    padding: 10px 10px;
+    top: 25px;
+    right: 25px;
+    background-color: transparentize(black, 0.3);
+    color: white;
+
+    @media screen and (max-width: 1024px) {
+        top: 10px;
+        right: 10px;
+    }
+
+    .left, .right {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0px 5px;
+    }
+
+    .color-key-box {
+        width: 20px;
+        height: 100px;
+        
+        &.flood {
+            background: rgba(255, 0, 0, 1);
+            background: -moz-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(255,255,0,1) 50%, rgba(17,255,0,1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 0, 0, 1)), color-stop(50%, rgba(255,255,0,1)), color-stop(100%, rgba(17,255,0,1)));
+            background: -webkit-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(255,255,0,1) 50%, rgba(17,255,0,1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(255,255,0,1) 50%, rgba(17,255,0,1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(255,255,0,1) 50%, rgba(17,255,0,1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 1) 0%, rgba(255,255,0,1) 50%, rgba(17,255,0,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff1500', endColorstr='#11ff00', GradientType=0 );
+        }
+
+        &.snow {
+            background: rgba(255, 0, 0, 1);
+            background: -moz-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 223, 1) 50%, rgba(0, 255, 255, 1) 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 0, 0, 1)), color-stop(50%, rgba(0, 0, 223, 1)), color-stop(100%, rgba(0, 255, 255, 1)));
+            background: -webkit-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 223, 1) 50%, rgba(0, 255, 255, 1) 100%);
+            background: -o-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 223, 1) 50%, rgba(0, 255, 255, 1) 100%);
+            background: -ms-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 223, 1) 50%, rgba(0, 255, 255, 1) 100%);
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 223, 1) 50%, rgba(0, 255, 255, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff1500', endColorstr='#11ff00', GradientType=0 );
+        }
+    }
+}
+
+#add-data {
+    position: absolute;
+    z-index: 10;
+    bottom: 35px;
+    right: 25px;
+    background-color: rgb(255,110,64);
+    box-shadow: 0px 0px 20px transparentize(black, 0.5);
+    transition: right 0.5s, opacity 0.5s;
+
+    &.inactive {
+        right: -100px;
+        opacity: 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+        bottom: 25px;
+        right: 15px;
+    }
+}
+
+span#date {
+	position: absolute;
+    opacity: 1;
+    bottom: 70px;
+    right: 30px;
+	color:white;
+	background-color:#404040;
+    padding: 10px;
+    transition: bottom 0.5s, opacity 0.5s;
+
+    &.inactive {
+        bottom: 100px;
+        opacity: 0;
+    }
+}
+
+#slider {
+    position: absolute;
+    opacity: 1;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 30px;
+    box-shadow: 0px 0px 20px transparentize(black, 0.5);
+    background-color: #424242;
+    border: none;
+    transition: bottom 0.5s, opacity 0.5s;
+
+    &.inactive {
+        bottom: 30px;
+        opacity: 0;
+    }
+
+    .noUi-handle {
+        background-color: rgb(220,220,220);
+        border: 1px solid grey;
+
+        &:before, &:after {
+            background-color: black;
+        }
+    }
 }
