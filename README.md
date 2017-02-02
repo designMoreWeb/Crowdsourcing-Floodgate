@@ -36,8 +36,7 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 ```shell
 	$ node -v
 ```
-
-	- If it is not installed go [here](http://blog.teamtreehouse.com/install-node-js-npm-windows) for windows or type:
+- If it is not installed go [here](http://blog.teamtreehouse.com/install-node-js-npm-windows) for windows or type:
 ```shell
 	$ sudo apt-get install python-software-properties
 	$ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
@@ -82,6 +81,7 @@ Storms are becoming stronger and rainfall more intense. Davidson Laboratory fore
 	> meteor npm install
 	> set MONGO_URL = mongodb://localhost:27017/flud
 	> meteor run --settings ./settings.json
+```
 
 ### Step 6
 - cd into the /worker/ directory and start the service worker
