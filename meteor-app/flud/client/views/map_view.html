@@ -1,31 +1,47 @@
 <template name="map_view">
-    <div id="upload-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add Data</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form" name='data-upload-form'>
-                        <fieldset class="form-group">
-                            <label for="water-height">Water Level (in ft):</label>
-                            <input type="number" id="water-height" class="form-control" name="height" min="1" />
-                        </fieldset>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="submit-upload" class="btn btn-primary">Upload</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    
-    <div class="map-container">
-        {{> googleMap name="exampleMap" options=exampleMapOptions}}
-    </div>
+
+	<dialog id="upload-modal" class="mdl-dialog">
+		<div class="dialog-inner">
+			<div class="mdl-dialog__title">
+				Upload Data
+			</div>
+			<div class="mdl-dialog__content">
+				<form class="form" name='data-upload-form'>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="number" name="height" id="height">
+						<label class="mdl-textfield__label" for="height">{{dataViewName}} Height (inches):</label>
+						<span class="mdl-textfield__error">Input is not a number!</span>
+					</div>
+
+					<button type="submit" class="hidden">Submit</button>
+				</form>
+			</div>
+			<div class="mdl-dialog__actions">
+				<button type="button" class="mdl-button close">Cancel</button>
+				<button type="button" class="mdl-button" id="submit-upload">Upload</button>
+			</div>
+		</div>
+	</dialog>
+
+	<div class="map-container" data-step="7" data-intro="This is the map. Click on any two points on the streets to start adding data!">
+		{{> googleMap name="fludMap" options=mapOptions}}
+	</div>
+
+	<div id="color-key">
+		<div class="left">
+			<div class="color-key-box {{getGradient}}"></div>
+		</div>
+		<div class="right">
+			<p>{{dataRange 'max'}} in.</p>
+			<p>{{dataRange 'med'}} in.</p>
+			<p style="margin-bottom: 0px;">{{dataRange 'min'}} in.</p>
+		</div>
+	</div>
+
+	<button id="add-data" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect {{#unless polylineSet}}inactive{{/unless}}">
+		<i class="material-icons">add</i>
+	</button>
+
+	<div id="slider" class="{{#unless showSlider}}inactive{{/unless}}"></div>
+	<span id="date" class="{{#unless showSlider}}inactive{{/unless}}"></span>
 </template>
